@@ -14,11 +14,12 @@ class CreateTables extends Migration
     public function up()
     {
         Schema::create('partidas', function (Blueprint $table) {
-            $table->integer('id_partida')->index()->unsigned();
+            //$table->integer('id_partida')->index()->unsigned();
+            $table->increments('id_partida');
             $table->string('estado');
             $table->integer('jugador_1')->references('id')->on('users')->onDelete('cascade');
             $table->integer('jugador_2')->references('id')->on('users')->onDelete('cascade');
-            $table->timestamp('created_at')->nullable();
+            $table->timestamps();//('created_at')->nullable();
         });
 
         Schema::create('fichas', function (Blueprint $table) {
@@ -27,7 +28,7 @@ class CreateTables extends Migration
             $table->string('fila');
             $table->string('columna');
             $table->integer('jugador')->references('id')->on('users')->onDelete('cascade');
-            $table->timestamp('created_at')->nullable();
+            $table->timestamps();//('created_at')->nullable();
         });
 
     }
